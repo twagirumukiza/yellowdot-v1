@@ -94,6 +94,14 @@ export class OnlineManager {
         document.getElementById('lobby-menu').classList.add('hidden');
         document.getElementById('lobby-room').classList.remove('hidden');
         document.getElementById('host-name').textContent = this.isHost ? this.username : 'Salon';
+        
+        // Générer et afficher le lien d'invitation
+        const inviteInput = document.getElementById('input-invite-link');
+        if (inviteInput && this.roomId) {
+            const inviteUrl = `${window.location.origin}${window.location.pathname}?room=${this.roomId}`;
+            inviteInput.value = inviteUrl;
+        }
+
         if (this.isHost) {
             document.getElementById('btn-start-room').classList.remove('hidden');
         } else {
